@@ -33,3 +33,22 @@ function chiaPromise(a, b) {
         });
     });
 }
+
+async function tinhDienTich(a, b, h) {
+    try {
+        const tong = await congPromise(a, b);
+        const tich = await nhanPromise(tong, h);
+        const kq = await chiaPromise(tich, 2);
+        return kq;
+    } catch (error) {
+        throw new Error('Loi tinh dien tich');
+    }
+}
+
+// tinhDienTich(4, 5, 6)
+// .then(result => console.log(result))
+// .catch(error => console.log(error.message));
+
+tinhDienTich(4, 5, 'x')
+.then(result => console.log(result))
+.catch(error => console.log(error.message));
