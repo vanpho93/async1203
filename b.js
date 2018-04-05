@@ -27,3 +27,31 @@ function chia(a, b, cb) {
         cb(null, body);
     });
 }
+
+/*
+    day Nho 4
+    day Lon 5
+    chieu cao 6
+*/
+function tinhDienTich(a, b, h, cb) {
+    cong(a, b, (errorCong, tong) => {
+        if (errorCong) return cb(errorCong);
+        nhan(tong, h, (errorNhan, tich) => {
+            if (errorNhan) return cb(errorNhan);
+            chia(tich, 2, (errorChia, kq) => {
+                if (errorChia) return cb(errorChia);
+                cb(null, kq);
+            });
+        });
+    });
+}
+
+tinhDienTich(4, 5, 6, (error, result) => {
+    if (error) return console.log(error.message);
+    console.log('DIEN TICH =', result);
+});
+
+tinhDienTich(8, 5, 'x', (error, result) => {
+    if (error) return console.log(error.message);
+    console.log('DIEN TICH =', result);
+});
