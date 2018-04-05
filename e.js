@@ -33,26 +33,30 @@ function chiaPromise(a, b) {
         });
     });
 }
+// const start = Date.now();
 
-async function tinhDienTich(a, b, h) {
-    try {
-        const tong = await congPromise(a, b);
-        const tich = await nhanPromise(tong, h);
-        const kq = await chiaPromise(tich, 2);
-        return kq;
-    } catch (error) {
-        throw new Error('Loi tinh dien tich');
-    }
-}
+// Promise.all([
+//     congPromise(4, 5),
+//     chiaPromise(6, 'x').catch(() => 10)
+// ])
+// .then(([tong, thuong]) => nhanPromise(tong, thuong))
+// .then(kq => {
+//     console.log(kq);
+//     console.log(Date.now() - start);
+// })
+// .catch(error => console.log(error));
 
-// tinhDienTich(4, 5, 6)
-// .then(result => console.log(result))
-// .catch(error => console.log(error.message));
+// Promise.race([
+//     congPromise(4, 5),
+//     chiaPromise(6, 2)
+// ])
+// .then(kq => console.log(kq))
+// .catch(error => console.log(error));
 
-const start = Date.now();
-tinhDienTich(4, 5, 6)
-.then(kq => {
-    console.log(kq);
-    console.log(Date.now() - start);
-})
-.catch(error => console.log(error.message));
+// Promise.resolve(10)
+// .then(kq => console.log(kq))
+// .catch(kq => console.log(kq))
+
+Promise.reject(10)
+.then(kq => console.log(kq))
+.catch(error => console.log('error', error))

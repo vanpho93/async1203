@@ -34,25 +34,11 @@ function chiaPromise(a, b) {
     });
 }
 
-async function tinhDienTich(a, b, h) {
-    try {
-        const tong = await congPromise(a, b);
-        const tich = await nhanPromise(tong, h);
-        const kq = await chiaPromise(tich, 2);
-        return kq;
-    } catch (error) {
-        throw new Error('Loi tinh dien tich');
-    }
-}
-
-// tinhDienTich(4, 5, 6)
-// .then(result => console.log(result))
-// .catch(error => console.log(error.message));
-
-const start = Date.now();
-tinhDienTich(4, 5, 6)
-.then(kq => {
-    console.log(kq);
-    console.log(Date.now() - start);
+congPromise(4, 5)
+.then(tong => {
+    nhanPromise(tong, 'a');
+    return 1;
 })
-.catch(error => console.log(error.message));
+.then(tich => chiaPromise(tich, 2))
+.then(kq => console.log(kq))
+.catch(error => console.log(error));
