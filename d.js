@@ -33,18 +33,3 @@ function chiaPromise(a, b) {
         });
     });
 }
-
-
-function tinhDienTich(a, b, h) {
-    return congPromise(a, b)
-    .then(tong => nhanPromise(tong, h))
-    .then(tich => chiaPromise(tich, 2));
-}
-
-tinhDienTich(4, 5, 6)
-.then(result => console.log(result))
-.catch(error => console.log(error.message));
-
-tinhDienTich(4, 5, 'x')
-.then(result => console.log(result))
-.catch(error => console.log(error.message));
